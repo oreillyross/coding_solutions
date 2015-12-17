@@ -8,10 +8,14 @@ public class UniqueChar {
     // always added for testing the solution
     public static void main (String[] args) {
         
-        System.out.println("I am unique :" + isUniqueChars("I am unique"));
-        System.out.println("I am uniqe :" + isUniqueChars("I am uniqe"));
+        System.out.println("I am unique :" + isUniqueChars("I am unique")); / // two u's - false
+        System.out.println("I am uniqe :" + isUniqueChars("I am uniqe")); // counts spaces - false
+        System.out.println("uniqe :" + isUniqueChars("uniqe")); // true
     }
     
+    
+    /* The time complexity for this code is 0(n), where n is the length of the string. 
+    The space complexity is 0(1).*/ 
     
     public static boolean isUniqueChars(String str) {
         
