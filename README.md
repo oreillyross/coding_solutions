@@ -9,6 +9,7 @@ by Gayle Laakmann McDowell  (Author)
 The solutions have in some instances simply been replicated (specifically the Java imperative solutions) in the case of functional style and javascript 
 these have been coded by myself.
 
-= List of coding problems and their solutions.
+==List of coding problems and their solutions.
 
-. 
+. Arrays and Strings
+ .. Java solution
