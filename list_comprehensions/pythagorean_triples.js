@@ -9,7 +9,7 @@
  * The right triangle having these side lengths is sometimes called the 3, 4, 5 triangle.
  **/
  
- // Haskell has the most elegant solution as lists are Monads 
+ // Haskell has the most elegant one line solution as lists are Monads 
  // pyth n = [(x,y,z) | x <- [1..n], y <- [x..n], z <- [y..n], x^2 + y^2 == z^2]
  
  // ES5 version
