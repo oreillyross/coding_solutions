@@ -52,6 +52,44 @@ function primeFactors(n) {
 
 console.log(primeFactors(69));
 
+/* How to get nth Fibonacci number 
+  non recursive version - time complexity is o(n) linear complexity
+*/
+
+function fibonacci(n) {
+    var fibo = [0, 1];
+    
+    if (n <= 2) return 1;
+    for (var i = 2; i <= n; i++) {
+        fibo[i] = fibo[i - 1] + fibo[i - 2];
+    }  
+        
+    return fibo[n];
+    
+}
+
+// testing non-recursive version
+
+console.log(fibonacci(12));
+
+// recursive version - complesity is 0(2^n)
+
+function fibonacci1(n) {
+    if (n <= 1) { 
+      return n;
+    } else {
+        return fibonacci1(n - 1) + fibonacci1(n - 2);
+    }
+}
+
+// testing recursive version
+
+console.log(fibonacci1(12));
+
+
+
+
+
 
 
 
