@@ -1,3 +1,5 @@
+"use strict";
+
 // taken from http://www.thatjsdude.com/interview/js1.html
 
 /* verify a prime number 
@@ -86,6 +88,38 @@ function fibonacci1(n) {
 
 console.log(fibonacci1(12));
 
+/* Find the greatest common divisor of two numbers.  */
+
+// Imperative solution
+
+var greatestCommonDivisor  = function(a, b) {
+    
+    let divisor = 2,
+        greatestDivisor = 1;
+        
+    if (a < 2 || b < 2) {
+        return 1;
+    }    
+    
+    while (a >= divisor && b >= divisor) {
+        if (a % divisor === 0 && b % divisor === 0) {
+            greatestDivisor =  divisor;
+        }
+        divisor++;
+    }
+    
+    return greatestDivisor;
+    
+    
+} 
+
+// testing
+
+console.log(greatestCommonDivisor(14,21));
+
+
+
+// Functional approach using recursion.
 
 
 
