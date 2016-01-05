@@ -92,7 +92,7 @@ console.log(fibonacci1(12));
 
 // Imperative solution
 
-var greatestCommonDivisor  = function(a, b) {
+let greatestCommonDivisor  = function(a, b) {
     
     let divisor = 2,
         greatestDivisor = 1;
@@ -121,10 +121,15 @@ console.log(greatestCommonDivisor(14,21));
 
 // Functional approach using recursion.
 
+let functionalGCD = function(a,b) {
+    if (b === 0) {
+        return a;
+    } else {
+       return functionalGCD(b, a%b);
+    }
+};
 
-
-
-
+console.log(functionalGCD(14,21));
 
 
 
