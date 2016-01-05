@@ -10,3 +10,4 @@ const description = (nameAndOccupation) => {
 }
 
 const [reg, status] = description([["Reginald", "Braithwaite"], "programmer"]);
+
