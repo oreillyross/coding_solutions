@@ -56,3 +56,16 @@ console.log(JSON.stringify(objliteral));
 let jsonVal = JSON.parse('{"firstname":"James","age":43}');
 
 console.log(jsonVal);
+
+
+// Factory functions in Javascript over classes. taken from
+// https://www.youtube.com/watch?v=ImwrezYhw4w
+
+const dog = () => {
+  const sound = "woof" ;
+  return {
+    talk: () => console.log(sound)
+  }
+}
+const sniffles = dog();
+sniffles.talk();
