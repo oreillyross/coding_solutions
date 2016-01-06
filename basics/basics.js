@@ -1,6 +1,6 @@
 "use strict";
 
-// taken from http://www.thatjsdude.com/interview/js1.html
+// taken from http://www.thatjsdude.com/interview/js1.html and also other sources where relevant
 
 /* verify a prime number 
 
@@ -177,3 +177,14 @@ let removeDuplicates = function removeDuplicates(arr) {
 let arr = [1,2,2,2,3,3,4,5,6,6];
 
 console.log(removeDuplicates(arr));
+
+// Remove a single value, indicated by an index from an array passed in, 
+// return a new array with the item removed.
+
+let removeElem = function(arr, index) {
+    return arr.slice(0, index)
+      .concat(arr.slice(index + 1))
+};
+
+console.log(removeElem([1,2,3,4], 2));
+
