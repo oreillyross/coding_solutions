@@ -156,3 +156,24 @@ for (let i = 1; i <= 100; i++) {
     
 }
 
+// remove duplicate members from an array
+
+let removeDuplicates = function removeDuplicates(arr) {
+    
+    let exists = {},
+        outArr = [],
+        elm;
+        
+    for (let i = 0; i < arr.length; i++) {
+        elm = arr[i];
+        if (!exists[elm]) {
+            outArr.push(elm);
+            exists[elm] = true;
+        }
+    }    
+    return outArr;
+}
+
+let arr = [1,2,2,2,3,3,4,5,6,6];
+
+console.log(removeDuplicates(arr));
