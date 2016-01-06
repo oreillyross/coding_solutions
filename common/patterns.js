@@ -13,16 +13,59 @@ console.log(libName);
 // using objects
 
 let person = new Object();
-
 person["first"] = "Jim";
 person["last"] = "Beam";
-
-console.log(person.first);
-console.log(person["last"]);
-
 person.address = new Object();
 person.address.street = "Memory lane";
 person.address.city = "Townsville";
 
+// Object literals - shorthand for new Object();
+let personliteral = {first: "Jim",
+                      last: "Beam",
+                       address: {
+                         street: "Mermory lane",
+                         city: "Townsville"
+                       }
+                     };
+
+console.log(person.first);
+console.log(person["last"]);
 console.log(person.address.street);
 console.log(person["address"]["city"]);
+
+
+// javascripts version of namespace faking
+
+let german = {};
+let english = {};
+
+german.greetz = "hallo";
+english.greetz = "hello";
+console.log(german.greetz);
+
+
+// using JSON and object literals. Every valid JSON is a valid object literals
+
+let objliteral = {
+  firstname: "James",
+  age: 43
+}
+
+console.log(JSON.stringify(objliteral));
+
+let jsonVal = JSON.parse('{"firstname":"James","age":43}');
+
+console.log(jsonVal);
+
+
+// Factory functions in Javascript over classes. taken from
+// https://www.youtube.com/watch?v=ImwrezYhw4w
+
+const dog = () => {
+  const sound = "woof" ;
+  return {
+    talk: () => console.log(sound)
+  }
+}
+const sniffles = dog();
+sniffles.talk();
