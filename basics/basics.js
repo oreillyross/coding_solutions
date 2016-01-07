@@ -188,3 +188,29 @@ let removeElem = function(arr, index) {
 
 console.log(removeElem([1,2,3,4], 2));
 
+
+// Merge two sorted arrays
+
+let mergeSortedArray = function(a, b) {
+    
+    let merged = [],
+        aElem = a[0],
+        bElem = b[0],
+        i = 1,
+        j =1;
+        
+    while (aElem || bElem) {
+        if ((aElem && !bElem) || (aElem < bElem)) {
+            merged.push(aElem);
+            aElem = a[i++];
+        } else {
+            merged.push(bElem);
+            bElem = b[j++];
+        }
+        
+    }    
+ 
+    return merged;
+}
+
+console.log(mergeSortedArray([1,2,3,7,8],[4,5,12]));
