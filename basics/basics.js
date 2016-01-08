@@ -214,3 +214,29 @@ let mergeSortedArray = function(a, b) {
 }
 
 console.log(mergeSortedArray([1,2,3,7,8],[4,5,12]));
+
+// Swap two numbers without using a temporary variable
+
+let swap = function(a,b) {
+    
+    // line by line
+    
+    console.log("a: " + a + " b: " + b);
+    
+    b = b - a;
+    a = a + b;
+    b = a - b;
+    
+    console.log("a: " + a + " b: " + b);
+    
+    // and a neat one liner
+    console.log("a: " + a + " b: " + b);
+    
+    b = (a + (a = b) - b)
+    
+    console.log("a: " + a + " b: " + b);
+    
+}
+
+swap(2,4);
+
