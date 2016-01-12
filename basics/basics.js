@@ -240,3 +240,46 @@ let swap = function(a,b) {
 
 swap(2,4);
 
+
+// string reverse - O(n) complexity in time
+
+let reverseStr = function(str) {
+    
+    let rstr = '';
+    
+    for (let i = str.length -1 ; i >= 0; i--) {
+        rstr += str[i];
+    }
+    
+    return rstr;
+}
+
+console.log(reverseStr("Hello"));
+
+
+// recursive solution to reverse string
+
+let rec_reverseStr = function(str) {
+    if (str === "") {
+        return "";
+    } else {
+        return rec_reverseStr(str.substr(1)) + str.charAt(0);
+    }
+};
+
+console.log(rec_reverseStr("Hello"));
+
+// Finally adding the reverse function as a method to String class
+
+String.prototype.reverse = function() {
+    
+    if (!this || this.length < 2) {
+        return this;
+        
+    } else {
+        return this.split('').reverse().join('');
+    }
+    
+}
+
+console.log("testing".reverse());
