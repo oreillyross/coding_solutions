@@ -283,3 +283,24 @@ String.prototype.reverse = function() {
 }
 
 console.log("testing".reverse());
+
+// Reverse words in a sentence
+
+let reverseWords = function(str) {
+    
+    let reverse = [],
+        wordlen = 0;
+        
+    for (let i = str.length -1; i >= 0; i--) {
+        if (str[i] === ' ' || i === 0) {
+            reverse.push(str.substr(i, wordlen +1))
+            wordlen = 0;
+        } else {
+          wordlen++;   
+        }
+    }
+    return reverse.join(' ');
+    
+}
+
+console.log(reverseWords("I am a string"));
