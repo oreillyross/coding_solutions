@@ -304,3 +304,33 @@ let reverseWords = function(str) {
 }
 
 console.log(reverseWords("I am a string"));
+
+// Factorial using imperative and functional styles
+
+"use strict";
+
+const factorial = function(n) {
+    let result = 1;
+    
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    
+    return result;
+};
+
+console.log(factorial(5));
+
+// and now recursively using functional style
+
+const factorialRecursive = function(n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorialRecursive(n - 1);
+    }
+};
+
+console.log(factorialRecursive(5));
+
+
