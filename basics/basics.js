@@ -1,6 +1,6 @@
 "use strict";
 
-// taken from http://www.thatjsdude.com/interview/js1.html
+// taken from http://www.thatjsdude.com/interview/js1.html and also other sources where relevant
 
 /* verify a prime number 
 
@@ -155,4 +155,182 @@ for (let i = 1; i <= 100; i++) {
     console.log(fizzBuzz(i) || fizz(i) || buzz(i) || i);
     
 }
+
+// remove duplicate members from an array
+
+let removeDuplicates = function removeDuplicates(arr) {
+    
+    let exists = {},
+        outArr = [],
+        elm;
+        
+    for (let i = 0; i < arr.length; i++) {
+        elm = arr[i];
+        if (!exists[elm]) {
+            outArr.push(elm);
+            exists[elm] = true;
+        }
+    }    
+    return outArr;
+}
+
+let arr = [1,2,2,2,3,3,4,5,6,6];
+
+console.log(removeDuplicates(arr));
+
+// Remove a single value, indicated by an index from an array passed in, 
+// return a new array with the item removed.
+
+let removeElem = function(arr, index) {
+    return arr.slice(0, index)
+      .concat(arr.slice(index + 1))
+};
+
+console.log(removeElem([1,2,3,4], 2));
+
+
+// Merge two sorted arrays
+
+let mergeSortedArray = function(a, b) {
+    
+    let merged = [],
+        aElem = a[0],
+        bElem = b[0],
+        i = 1,
+        j =1;
+        
+    while (aElem || bElem) {
+        if ((aElem && !bElem) || (aElem < bElem)) {
+            merged.push(aElem);
+            aElem = a[i++];
+        } else {
+            merged.push(bElem);
+            bElem = b[j++];
+        }
+        
+    }    
+ 
+    return merged;
+}
+
+console.log(mergeSortedArray([1,2,3,7,8],[4,5,12]));
+
+// Swap two numbers without using a temporary variable
+
+let swap = function(a,b) {
+    
+    // line by line
+    
+    console.log("a: " + a + " b: " + b);
+    
+    b = b - a;
+    a = a + b;
+    b = a - b;
+    
+    console.log("a: " + a + " b: " + b);
+    
+    // and a neat one liner
+    console.log("a: " + a + " b: " + b);
+    
+    b = (a + (a = b) - b)
+    
+    console.log("a: " + a + " b: " + b);
+    
+}
+
+swap(2,4);
+
+
+// string reverse - O(n) complexity in time
+
+let reverseStr = function(str) {
+    
+    let rstr = '';
+    
+    for (let i = str.length -1 ; i >= 0; i--) {
+        rstr += str[i];
+    }
+    
+    return rstr;
+}
+
+console.log(reverseStr("Hello"));
+
+
+// recursive solution to reverse string
+
+let rec_reverseStr = function(str) {
+    if (str === "") {
+        return "";
+    } else {
+        return rec_reverseStr(str.substr(1)) + str.charAt(0);
+    }
+};
+
+console.log(rec_reverseStr("Hello"));
+
+// Finally adding the reverse function as a method to String class
+
+String.prototype.reverse = function() {
+    
+    if (!this || this.length < 2) {
+        return this;
+        
+    } else {
+        return this.split('').reverse().join('');
+    }
+    
+}
+
+console.log("testing".reverse());
+
+// Reverse words in a sentence
+
+let reverseWords = function(str) {
+    
+    let reverse = [],
+        wordlen = 0;
+        
+    for (let i = str.length -1; i >= 0; i--) {
+        if (str[i] === ' ' || i === 0) {
+            reverse.push(str.substr(i, wordlen +1))
+            wordlen = 0;
+        } else {
+          wordlen++;   
+        }
+    }
+    return reverse.join(' ');
+    
+}
+
+console.log(reverseWords("I am a string"));
+
+// Factorial using imperative and functional styles
+
+"use strict";
+
+const factorial = function(n) {
+    let result = 1;
+    
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    
+    return result;
+};
+
+console.log(factorial(5));
+
+// and now recursively using functional style
+
+const factorialRecursive = function(n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorialRecursive(n - 1);
+    }
+};
+
+console.log(factorialRecursive(5));
+
 
