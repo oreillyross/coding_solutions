@@ -13,3 +13,23 @@ const factorial = function(num) {
 
 console.log(factorial(0));
 console.log(factorial(4));
+
+// Scope question taken from http://www.sitepoint.com/5-typical-javascript-interview-exercises/
+// in this IIFE the b is actually global and a is local to function
+ 
+
+(function() {
+  
+  var a = b = 5;
+  console.log(b); // prints 5
+})();
+
+// in strict mode it fails and you have to be explicit in your intent
+// "ReferenceError: b is not defined, ===>  adding window.b works
+
+'use strict'
+(function() {
+  
+  var a = window.b = 5;
+  console.log(b); // prints 5
+})();
