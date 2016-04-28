@@ -156,6 +156,8 @@ for (let i = 1; i <= 100; i++) {
     
 }
 
+
+
 // remove duplicate members from an array
 
 let removeDuplicates = function removeDuplicates(arr) {
