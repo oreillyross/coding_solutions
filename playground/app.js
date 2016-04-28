@@ -1,9 +1,19 @@
-"use strict";
+function rot13(str) { // LBH QVQ VG!
+ 
+ var charCodes = [];
+ for (var i = 0; i < str.length; i++) {
+   var code = (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) ? 
+     ((str.charCodeAt(i) - 65 + 13) % 26) + 65 : str.charCodeAt(i)
+   charCodes.push(code);
 
-const pipe = require("ramda").pipe;
-const firstName = name => name.split(" ")[1];
-const firstInitial = firstName => firstName[0];
+  }
+   
+  return String.fromCharCode.apply(null, charCodes);
+ 
+}
 
-const initials = pipe(firstName, firstInitial);
+// Change the inputs below to test
 
-console.log(initials("Doc Emmet Brown"));
+console.log(
+rot13("SERR PBQR PNZC")
+);

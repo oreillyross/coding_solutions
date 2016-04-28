@@ -1,0 +1,19 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "countdown": "^2.6.0",
+    "jquery": "^2.2.0",
+    "moment": "^2.11.2"
+  },
+  "devDependencies": {
+    "tape": "^4.4.0"
+  }
+}
