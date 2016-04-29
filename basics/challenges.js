@@ -33,3 +33,26 @@ console.log(factorial(4));
   var a = window.b = 5;
   console.log(b); // prints 5
 })();
+
+
+
+// Flatten an array
+function steamrollArray(arr) {
+  
+  
+  function flatten(arr) {
+  return arr.reduce(function (a, b) {
+    return a.concat(Array.isArray(b) ? flatten(b) : b);
+  }, []);
+}
+
+  return flatten(arr); 
+  
+}
+
+console.log(
+steamrollArray([[1], 2, [[3, 4], 5], [[[]]], [[[6]]], 7, 8, []])
+  );
+
+//[[1], 2, [[3, 4], 5], [[[]]], [[[6]]], 7, 8, []]
+// [1, [2], [3, [[4]]]]
