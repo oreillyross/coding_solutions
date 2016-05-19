@@ -56,3 +56,18 @@ steamrollArray([[1], 2, [[3, 4], 5], [[[]]], [[[6]]], 7, 8, []])
 
 //[[1], 2, [[3, 4], 5], [[[]]], [[[6]]], 7, 8, []]
 // [1, [2], [3, [[4]]]]
+
+// Heap algorithnm using recursion 
+// How to find all permutations from an input array.
+
+function heap(items){
+    return part([],items);
+
+    function part(done,rest){
+        return rest.length?
+            part(done,tail(rest))
+                .concat(part(done.concat(rest[0]),tail(rest)))
+            :[done]}
+    function tail(a){return a.slice(1)}
+}
+
