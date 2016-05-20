@@ -71,3 +71,55 @@ function heap(items){
     function tail(a){return a.slice(1)}
 }
 
+// Permutations array taken from Freecodecamp - no repeats please
+
+function permAlone(str) {
+  
+  var regex = /(.)\1+/g;
+  
+
+  
+  function permutationArr(str) 
+{ 
+  var arr = str.split('');
+  permutations = [];   
+
+  function swap(a, b)
+  {
+    var tmp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = tmp;
+  }
+
+  function generate(n) {
+    if (n == 1) {
+      permutations.push(arr.join(''));
+    } else {
+      for (var i = 0; i != n; ++i) {
+        generate(n - 1);
+        swap(n % 2 ? 0 : i, n - 1);
+      }
+    }
+  }
+
+  generate(arr.length);
+  return permutations;
+} 
+  
+  var perms = permutationArr(str);
+
+  
+  var answer = perms.filter(function(value) {
+    return !value.match(regex);
+  });
+ 
+  return answer.length;
+}
+
+
+
+
+
+console.log(
+permAlone('abcdefa')
+  );
