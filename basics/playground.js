@@ -12,3 +12,21 @@ function heap(items){
 }
 
 console.log(heap(['a','a', 'b']))
+
+var memoize = function memoize(f) {
+    const store = {};
+    
+    return function() {
+        const arg_str = JSON.stringify(arguments);
+        store[arg_str] = store[arg_str] || f.apply(f, arguments);
+        return store[arg_str];
+    };    
+};
+
+// to test the above.
+
+const double = memoize(function(a) {
+    return a + a;
+});
+
+console.log(double(2))
