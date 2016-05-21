@@ -2,17 +2,17 @@
 
 // taken from http://www.thatjsdude.com/interview/js1.html and also other sources where relevant
 
-/* verify a prime number 
+/* verify a prime number
 
-Imperative solution 
+Imperative solution
 a prime number is only divisible by itself and 1. So, i will run a while loop and increase by 1
 */
 
 
 function isPrime(n) {
-    
+
     var divisor = 2;
-    
+
     while (n > divisor) {
         if (n % divisor === 0) {
             return false;
@@ -20,7 +20,7 @@ function isPrime(n) {
             divisor++;
         }
     }
-    
+
     return true;
 }
 
@@ -37,7 +37,7 @@ console.log("237 is a prime:  " + isPrime(237));
 function primeFactors(n) {
     var factors = [];
     var divisor = 2;
-    
+
     while (n > 2) {
         if (n % divisor === 0) {
             factors.push(divisor);
@@ -46,7 +46,7 @@ function primeFactors(n) {
             divisor++;
         }
     }
-    
+
     return factors;
 }
 
@@ -54,20 +54,20 @@ function primeFactors(n) {
 
 console.log(primeFactors(69));
 
-/* How to get nth Fibonacci number 
+/* How to get nth Fibonacci number
   non recursive version - time complexity is o(n) linear complexity
 */
 
 function fibonacci(n) {
     var fibo = [0, 1];
-    
+
     if (n <= 2) return 1;
     for (var i = 2; i <= n; i++) {
         fibo[i] = fibo[i - 1] + fibo[i - 2];
-    }  
-        
+    }
+
     return fibo[n];
-    
+
 }
 
 // testing non-recursive version
@@ -77,7 +77,7 @@ console.log(fibonacci(12));
 // recursive version - complesity is 0(2^n)
 
 function fibonacci1(n) {
-    if (n <= 1) { 
+    if (n <= 1) {
       return n;
     } else {
         return fibonacci1(n - 1) + fibonacci1(n - 2);
@@ -93,25 +93,25 @@ console.log(fibonacci1(12));
 // Imperative solution
 
 let greatestCommonDivisor  = function(a, b) {
-    
+
     let divisor = 2,
         greatestDivisor = 1;
-        
+
     if (a < 2 || b < 2) {
         return 1;
-    }    
-    
+    }
+
     while (a >= divisor && b >= divisor) {
         if (a % divisor === 0 && b % divisor === 0) {
             greatestDivisor =  divisor;
         }
         divisor++;
     }
-    
+
     return greatestDivisor;
-    
-    
-} 
+
+
+}
 
 // testing
 
@@ -153,7 +153,7 @@ let fizzBuzz = function(num) {
 for (let i = 1; i <= 100; i++) {
 
     console.log(fizzBuzz(i) || fizz(i) || buzz(i) || i);
-    
+
 }
 
 
@@ -161,18 +161,18 @@ for (let i = 1; i <= 100; i++) {
 // remove duplicate members from an array
 
 let removeDuplicates = function removeDuplicates(arr) {
-    
+
     let exists = {},
         outArr = [],
         elm;
-        
+
     for (let i = 0; i < arr.length; i++) {
         elm = arr[i];
         if (!exists[elm]) {
             outArr.push(elm);
             exists[elm] = true;
         }
-    }    
+    }
     return outArr;
 }
 
@@ -180,7 +180,7 @@ let arr = [1,2,2,2,3,3,4,5,6,6];
 
 console.log(removeDuplicates(arr));
 
-// Remove a single value, indicated by an index from an array passed in, 
+// Remove a single value, indicated by an index from an array passed in,
 // return a new array with the item removed.
 
 let removeElem = function(arr, index) {
@@ -194,13 +194,13 @@ console.log(removeElem([1,2,3,4], 2));
 // Merge two sorted arrays
 
 let mergeSortedArray = function(a, b) {
-    
+
     let merged = [],
         aElem = a[0],
         bElem = b[0],
         i = 1,
         j =1;
-        
+
     while (aElem || bElem) {
         if ((aElem && !bElem) || (aElem < bElem)) {
             merged.push(aElem);
@@ -209,9 +209,9 @@ let mergeSortedArray = function(a, b) {
             merged.push(bElem);
             bElem = b[j++];
         }
-        
-    }    
- 
+
+    }
+
     return merged;
 }
 
@@ -220,24 +220,24 @@ console.log(mergeSortedArray([1,2,3,7,8],[4,5,12]));
 // Swap two numbers without using a temporary variable
 
 let swap = function(a,b) {
-    
+
     // line by line
-    
+
     console.log("a: " + a + " b: " + b);
-    
+
     b = b - a;
     a = a + b;
     b = a - b;
-    
+
     console.log("a: " + a + " b: " + b);
-    
+
     // and a neat one liner
     console.log("a: " + a + " b: " + b);
-    
+
     b = (a + (a = b) - b)
-    
+
     console.log("a: " + a + " b: " + b);
-    
+
 }
 
 swap(2,4);
@@ -246,13 +246,13 @@ swap(2,4);
 // string reverse - O(n) complexity in time
 
 let reverseStr = function(str) {
-    
+
     let rstr = '';
-    
+
     for (let i = str.length -1 ; i >= 0; i--) {
         rstr += str[i];
     }
-    
+
     return rstr;
 }
 
@@ -274,14 +274,14 @@ console.log(rec_reverseStr("Hello"));
 // Finally adding the reverse function as a method to String class
 
 String.prototype.reverse = function() {
-    
+
     if (!this || this.length < 2) {
         return this;
-        
+
     } else {
         return this.split('').reverse().join('');
     }
-    
+
 }
 
 console.log("testing".reverse());
@@ -289,20 +289,20 @@ console.log("testing".reverse());
 // Reverse words in a sentence
 
 let reverseWords = function(str) {
-    
+
     let reverse = [],
         wordlen = 0;
-        
+
     for (let i = str.length -1; i >= 0; i--) {
         if (str[i] === ' ' || i === 0) {
             reverse.push(str.substr(i, wordlen +1))
             wordlen = 0;
         } else {
-          wordlen++;   
+          wordlen++;
         }
     }
     return reverse.join(' ');
-    
+
 }
 
 console.log(reverseWords("I am a string"));
@@ -313,11 +313,11 @@ console.log(reverseWords("I am a string"));
 
 const factorial = function(n) {
     let result = 1;
-    
+
     for (let i = 2; i <= n; i++) {
         result *= i;
     }
-    
+
     return result;
 };
 
@@ -326,11 +326,7 @@ console.log(factorial(5));
 // and now recursively using functional style
 
 const factorialRecursive = function(n) {
-    if (n <= 1) {
-        return 1;
-    } else {
-        return n * factorialRecursive(n - 1);
-    }
+    return (n <= 1) ? 1: n * factorialRecursive(n - 1);
 };
 
 console.log(factorialRecursive(5));
@@ -340,12 +336,12 @@ console.log(factorialRecursive(5));
 
 var memoize = function memoize(f) {
     const store = {};
-    
+
     return function() {
         const arg_str = JSON.stringify(arguments);
         store[arg_str] = store[arg_str] || f.apply(f, arguments);
         return store[arg_str];
-    };    
+    };
 };
 
 // to test the above.
