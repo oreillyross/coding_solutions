@@ -16,10 +16,7 @@ function makeFriendlyDates(arr) {
 };
 
 
-function parseDate(str) {
-   var mdy = str.split('/');
-   return new Date(mdy[2], mdy[0]-1, mdy[1]);
-}
+
 
 function daydiff(first, second) {
    return Math.round((second-first)/(1000*60*60*24));
@@ -32,12 +29,14 @@ function daydiff(first, second) {
         return '' + num + 'st';
       } else if (num % 10 === 2) {
         return '' + num + 'nd';
-      } else if (num % 10 === 3){
+      } else if (num % 10 === 3 && num !== 13){
         return '' + num + 'rd';
       } else {
         return '' + num + 'th';
       }
     }
+
+
 
     var start = arguments[0][0],
         end =   arguments[0][1],
