@@ -1,27 +1,33 @@
 function makeFriendlyDates(arr) {
 
   var month = {
-    1: 'January',
-    2: 'February',
-    3: 'March',
-    4: 'April',
-    5: 'May',
-    6: 'June',
-    7: 'July',
-    8: 'August',
-    9: 'September',
-    10: 'October',
-    11: 'November',
-    12: 'December'
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'August',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December'
 };
 
 
-
-
-function daydiff(first, second) {
-   return Math.round((second-first)/(1000*60*60*24));
-}
-
+ function monthDiff(date1, date2) {
+    var month2 = date2.getUTCFullYear() * 12 + date2.getUTCMonth();
+    var month1 = date1.getUTCFullYear() * 12 + date1.getUTCMonth();
+    return month2 - month1;
+  }
+  
+   function dayDiff(date1, date2) {
+    if(date2.getUTCMonth() === date1.getUTCMonth()){
+      return date1.getUTCDate()-date2.getUTCDate();
+    }
+    return 0;
+  }
 
 
     function getDay(num) {
@@ -36,30 +42,40 @@ function daydiff(first, second) {
       }
     }
 
+    var startDate = new Date(Date.UTC(
+          arguments[0][0].substr(0,4), //year
+          arguments[0][0].substr(5,2) - 1, // month
+          arguments[0][0].substr(8,2)  // day   
+        ));
+    
+    var endDate = new Date(Date.UTC(
+          arguments[0][1].substr(0,4), //year
+          arguments[0][1].substr(5,2) - 1, // month
+          arguments[0][1].substr(8,2)  // day  
+        ));
 
-
-    var start = arguments[0][0],
-        end =   arguments[0][1],
-        sYear  = parseInt(start.substr(0,4)),
-        sMonth = month[parseInt(start.substr(5,2))],
-        sDay   = getDay(parseInt(start.substr(9,2))),
-        eYear  = (sYear === parseInt(end.substr(0,4))) ? "" : parseInt(end.substr(0,4)),
-        eMonth = (parseInt(end.substr(5,2)) === parseInt(start.substr(5,2))) ? "" : month[parseInt(end.substr(5,2))],
-        eDay   = getDay(parseInt(end.substr(9,2))),
-        lessThanAYear = (daydiff(new Date(start), new Date(end)) < 31)
-
-    var comma = (eMonth) && (!lessThanAYear) ? ', ' : "";
-console.log(lessThanAYear)
-
-    sYear = (lessThanAYear) ? "" : sYear;
-    eYear = (lessThanAYear) ? "" : eYear;
-    var startDate = sMonth + ' ' + sDay + comma + sYear,
-        endDate   = eMonth + ' ' + eDay + comma + eYear;
-
-    var dates = [].concat(startDate);
-        dates.push(endDate.trim());
-
-    return dates;
+   
+   var sameDay              = endDate.getTime() - startDate.getTime() === 0,
+       sameMonth            = startDate.getUTCMonth() === endDate.getUTCMonth() && startDate.getUTCFullYear() === endDate.getUTCFullYear(),
+       less12MonthsDiffYear = monthDiff(startDate, endDate) < 12 && startDate.getUTCFullYear() !== endDate.getUTCFullYear(),
+       less12MonthsSameYear = monthDiff(startDate, endDate) < 12,
+       sameMonthDiffYear    = monthDiff(startDate, endDate) <= 12 && dayDiff(startDate, endDate)>0;
+   
+   
+    var sMonth = month[startDate.getUTCMonth()],
+       sDay    = getDay(startDate.getUTCDate()),
+       sYear  = (!sameDay && sameMonth || less12MonthsDiffYear) ? "" : ', ' + startDate.getUTCFullYear(), 
+       eMonth = (sameDay || sameMonth) ? "" : month[endDate.getUTCMonth()],
+       eDay   = (sameDay ) ? "" : getDay(endDate.getUTCDate()),
+       eYear  = (sameDay || sameMonth || less12MonthsDiffYear || less12MonthsSameYear || sameMonthDiffYear) ? "" : ', ' + endDate.getUTCFullYear();
+   
+    var retStart = sMonth + ' ' + sDay + sYear,
+        retEnd   = eMonth + ' ' + eDay + eYear,
+        retDate  = [].concat(retStart);
+        if (retEnd !== ' ') retDate.push(retEnd.trim());
+        
+        return retDate;
+   
 
 }
 
@@ -84,3 +100,4 @@ makeFriendlyDates(["2022-09-05", "2023-09-04"]) // should return ["September 5th
 console.log(
 makeFriendlyDates(["2022-09-05", "2023-09-05"]) // should return ["September 5th, 2022","September 5th, 2023"].
 );
+
