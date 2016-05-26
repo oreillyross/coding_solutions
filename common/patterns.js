@@ -96,3 +96,16 @@ test('Closure for object privacy.', assert => {
   assert.equal(actual, expected, msg);
   assert.end();
 });
+
+//If you have an array of something (numbers, strings, objects - doesn't matter) 
+//that contains duplicates, and want only the unique values and don't care about preserving their order, you can do this:
+
+let arr = [1, 2, 2, 3, 3, 4]
+arr = [...new Set(arr)]
+// [1, 2, 3, 4]
+
+//pattern matching, i.e. destructuring:
+
+const [head, ...tail] = [1, 2, 3, 4]
+console.log(head) // 1
+console.log(tail) // [2, 3, 4]
