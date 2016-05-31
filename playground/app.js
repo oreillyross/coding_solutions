@@ -1,19 +1,37 @@
-function rot13(str) { // LBH QVQ VG!
+function pairwise(arr, arg) {
  
- var charCodes = [];
- for (var i = 0; i < str.length; i++) {
-   var code = (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90) ? 
-     ((str.charCodeAt(i) - 65 + 13) % 26) + 65 : str.charCodeAt(i)
-   charCodes.push(code);
-
+  var result = [];
+  if ( arr.length === 0 )
+    return 0;
+  for ( var i = 0; i < arr.length; i++ ) {
+    for ( var j = i+1; j < arr.length; j++ ) {
+      if ( arr[i] + arr[j] === arg && result.indexOf(i) === -1 && result.indexOf(j) === -1 ) {
+        result.push(i,j);
+      }
+    }
   }
-   
-  return String.fromCharCode.apply(null, charCodes);
+  return result.reduce(function(a,b) {
+    return a + b;
+  });
+
+ 
+ 
+ 
+ 
  
 }
 
-// Change the inputs below to test
+
+
+
+
+
+
+
+
 
 console.log(
-rot13("SERR PBQR PNZC")
+
+pairwise([1, 1, 1], 2)
+
 );
