@@ -1,0 +1,21 @@
+body {
+    padding: 100px;
+    margin: 0px;
+}
+
+#board {
+    width: 250px;
+    height: 240px;
+}
+#board section {
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    float: left;
+}
+
+header {
+  color: rgba(200,0,0,0.5);
+  font-size: 2em;
+  
+}
