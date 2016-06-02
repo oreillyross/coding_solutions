@@ -12,6 +12,8 @@ body {
     height: 80px;
     border: 1px solid black;
     float: left;
+    position: relative;
+
 }
 
 header {
@@ -19,3 +21,11 @@ header {
   font-size: 2em;
   
 }
+
+#board section span {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
