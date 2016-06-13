@@ -73,6 +73,7 @@ sniffles.talk();
 
 // Closures example
 
+
 const getSecret = (secret) => {
   return {
     get: () => secret
@@ -109,3 +110,4 @@ arr = [...new Set(arr)]
 const [head, ...tail] = [1, 2, 3, 4]
 console.log(head) // 1
 console.log(tail) // [2, 3, 4]
+
