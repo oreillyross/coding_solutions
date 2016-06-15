@@ -1,6 +1,7 @@
 /*
 
-For the given integer n, consider an increasing sequence consisting of all positive integers that are either powers of n, or sums of distinct powers of n.
+For the given integer n, consider an increasing sequence consisting of all positive integers that are either 
+powers of n, or sums of distinct powers of n.
 
 Your task is to find the kth (1-based) number in this sequence.
 
