@@ -131,6 +131,14 @@ let functionalGCD = function(a,b) {
 
 console.log(functionalGCD(14,21));
 
+// very terse approach, less readable.
+
+const gcd = (a,b) => {
+  return (!b) ? a : gcd(b, a % b)
+}
+
+console.log(gcd(1160718174, 316258250))
+
 
 /* FizzBuzz coding problem */
 
@@ -138,17 +146,9 @@ console.log(functionalGCD(14,21));
 
 // 3 = Fizz, 5 = Buzz, 15 FizzBuzz
 
-let fizz = function(num) {
-    if (num % 3 === 0) return "Fizz";
-};
-
-let buzz = function(num) {
-    if (num % 5 === 0) return "Buzz";
-};
-
-let fizzBuzz = function(num) {
-    if ((num % 5 === 0) && ((num % 3 === 0))) return "FizzBuzz";
-};
+const fizz = num => (num % 3 === 0) ? "Fizz" : "",
+      buzz = num => (num % 5 === 0) ? "Buzz" : "",
+      fizzBuzz = num => ((num % 5 === 0) && ((num % 3 === 0))) ? "FizzBuzz" : "";
 
 for (let i = 1; i <= 100; i++) {
 
