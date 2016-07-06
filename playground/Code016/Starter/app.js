@@ -1,22 +1,19 @@
-"use strict";
 
-// 3 = Fizz, 5 = Buzz, 15 FizzBuzz
-
-let fizz = function(num) {
-    if (num % 3 === 0) return "Fizz";
-};
-
-let buzz = function(num) {
-    if (num % 5 === 0) return "Buzz";
-};
-
-let fizzBuzz = function(num) {
-    if ((num % 5 === 0) && ((num % 3 === 0))) return "FizzBuzz";
-};
-
-for (let i = 1; i <= 100; i++) {
-
-    console.log(fizzBuzz(i) || fizz(i) || buzz(i) || i);
-    
-}
-
+    var video;
+     
+    window.onload = function() {
+      video = document.querySelector("#myVideo");
+      var firstTrack = video.textTracks[0];
+      readContent(firstTrack);
+    };
+     
+    function readContent(track) {
+      console.log("adding cue change listener to loaded track...");
+      track.addEventListener("cuechange", function(e) {
+         var cue = this.activeCues[0];
+         if(cue !== undefined)
+            console.log( "cue change: text = " + cue.text);
+         });
+         video.play();
+    }
+     
