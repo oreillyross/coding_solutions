@@ -1,4 +1,6 @@
-var $ = require('jquery');
+const $ =  require('jquery');
 
-$('body').html('This works whooo');
+
+
+$('body').html('This works')
 

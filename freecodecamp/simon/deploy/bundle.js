@@ -44,11 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(1);
+	const $ = __webpack_require__(1);
 
-	$('body').html('This works whooo');
-
-
+	$('body').html('This works');
 
 /***/ },
 /* 1 */
