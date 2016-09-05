@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4976a1f6d8d479026ca9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d704c2d4e424c459b53b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -29888,7 +29888,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29903,6 +29903,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -29910,62 +29912,176 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Detail = function (_React$Component) {
-	  _inherits(Detail, _React$Component);
+	    _inherits(Detail, _React$Component);
 
-	  function Detail(props) {
-	    _classCallCheck(this, Detail);
+	    function Detail(props) {
+	        _classCallCheck(this, Detail);
 
-	    var _this = _possibleConstructorReturn(this, (Detail.__proto__ || Object.getPrototypeOf(Detail)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (Detail.__proto__ || Object.getPrototypeOf(Detail)).call(this, props));
 
-	    _this.state = { commits: [] };
+	        _this.state = {
 
-	    return _this;
-	  }
+	            mode: 'commits',
+	            commits: [],
+	            forks: [],
+	            pulls: []
 
-	  _createClass(Detail, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var _this2 = this;
+	        };
 
-	      _superagent2.default.get('https://api.github.com/repos/facebook/react/commits').end(function (error, response) {
-	        if (!error && response) {
-	          console.dir(response.body);
-	          _this2.setState({ commits: response.body });
-	        } else {
-	          console.log('There was an error getting data', error);
+	        return _this;
+	    }
+
+	    _createClass(Detail, [{
+	        key: 'fetchFeed',
+	        value: function fetchFeed(type) {
+	            var _this2 = this;
+
+	            _superagent2.default.get('https://api.github.com/repos/facebook/react/' + type).end(function (error, response) {
+	                if (!error && response) {
+	                    _this2.setState(_defineProperty({}, type, response.body));
+	                } else {
+	                    console.log('Error fetching ' + type, error);
+	                }
+	            });
 	        }
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
+	    }, {
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.fetchFeed('commits');
+	            this.fetchFeed('pulls');
+	            this.fetchFeed('forks');
+	        }
+	    }, {
+	        key: 'renderCommits',
+	        value: function renderCommits() {
 
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        this.state.commits.map(function (commit, index) {
-	          return _react2.default.createElement(
-	            'p',
-	            { key: index },
-	            _react2.default.createElement(
-	              'strong',
-	              null,
-	              commit.author ? commit.author.login : 'Anonymous'
-	            ),
-	            ':',
-	            _react2.default.createElement(
-	              'a',
-	              { href: commit.html_url },
-	              commit.commit.message
-	            ),
-	            '.'
-	          );
-	        })
-	      );
-	    }
-	  }]);
+	            return this.state.commits.map(function (commit, index) {
+	                var author = commit.author ? commit.author.login : 'Anonymous';
+	                return _react2.default.createElement(
+	                    'p',
+	                    { key: index },
+	                    _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        author
+	                    ),
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: commit.html_url },
+	                        commit.commit.message
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'renderForks',
+	        value: function renderForks() {
 
-	  return Detail;
+	            return this.state.forks.map(function (fork, index) {
+	                var owner = fork.owner ? fork.owner.login : 'Anonymous';
+	                return _react2.default.createElement(
+	                    'p',
+	                    { key: index },
+	                    _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        owner
+	                    ),
+	                    ' forked to:',
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: fork.html_url },
+	                        fork.html_url
+	                    ),
+	                    ' at ',
+	                    fork.created_at,
+	                    '.'
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'renderPulls',
+	        value: function renderPulls() {
+
+	            return this.state.pulls.map(function (pull, index) {
+	                var user = pull.user ? pull.user.login : 'Anonymous';
+	                return _react2.default.createElement(
+	                    'p',
+	                    { key: index },
+	                    _react2.default.createElement(
+	                        'strong',
+	                        null,
+	                        user
+	                    ),
+	                    ' forked to:',
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: pull.html_url },
+	                        pull.body
+	                    ),
+	                    '.'
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'showCommits',
+	        value: function showCommits() {
+	            this.setState({
+	                mode: 'commits'
+	            });
+	        }
+	    }, {
+	        key: 'showForks',
+	        value: function showForks() {
+	            this.setState({
+	                mode: 'forks'
+	            });
+	        }
+	    }, {
+	        key: 'showPulls',
+	        value: function showPulls() {
+	            this.setState({
+	                mode: 'pulls'
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            var content = void 0;
+
+	            if (this.state.mode === 'commits') {
+	                content = this.renderCommits();
+	            } else if (this.state.mode === 'forks') {
+	                content = this.renderForks();
+	            } else {
+	                content = this.renderPulls();
+	            }
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.showCommits.bind(this) },
+	                    'Show Commits'
+	                ),
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.showForks.bind(this) },
+	                    'Show Forks'
+	                ),
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.showPulls.bind(this) },
+	                    'Show Pulls'
+	                ),
+	                content
+	            );
+	        }
+	    }]);
+
+	    return Detail;
 	}(_react2.default.Component);
 
 	exports.default = Detail;
