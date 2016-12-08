@@ -17,3 +17,11 @@ class MyComponent extends React.Component {
 const MyComponent = props => (
   <div className={props.className}/>
 );
+
+// Methods do not automatically bind this to the class instance. Explicitly use
+// bind statement in a stateful component.
+constructor(props) {
+super(props);
+// some code...
+this.handleNameChange = this.handleNameChange.bind(this);
+}
