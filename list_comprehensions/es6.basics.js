@@ -6,6 +6,7 @@ const length = ([first, ...rest]) =>
     ? 0
     : 1 + length(rest);
   */  
-// Sum all function written using rest operator and arrow functions, nice and functional
 
+
+// Sum all function written using rest operator and arrow functions, nice and functional
 const sumAll = (...numbers) => numbers.reduce((total,next) => total + next)

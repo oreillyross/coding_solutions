@@ -20,6 +20,22 @@ const PaginationHelper = require('../PaginationHelper')
 const assert = require('chai').assert
 const expect = require('chai').expect
 
+var helper = new PaginationHelper(['a','b','c','d','e','f'], 4);
+
+/*
+helper.pageCount(); //should == 2
+helper.itemCount(); //should == 6
+helper.pageItemCount(0); //should == 4
+helper.pageItemCount(1); // last page - should == 2
+helper.pageItemCount(2); // should == -1 since the page is invalid
+
+// pageIndex takes an item index and returns the page that it belongs on
+helper.pageIndex(5); //should == 1 (zero based index)
+helper.pageIndex(2); //should == 0
+helper.pageIndex(20); //should == -1
+helper.pageIndex(-10); //should == -1
+*/
+
 describe("Solution", function(){
   it('should return page count of 2', function() {
     expect(helper.pageCount()).to.eql(2)
@@ -50,15 +66,16 @@ describe("Solution", function(){
   })
 });
 
-var helper = new PaginationHelper(['a','b','c','d','e','f'], 4);
-helper.pageCount(); //should == 2
-helper.itemCount(); //should == 6
-helper.pageItemCount(0); //should == 4
-helper.pageItemCount(1); // last page - should == 2
-helper.pageItemCount(2); // should == -1 since the page is invalid
+var helper1 = new PaginationHelper([], 1);
+helper1.pageItemCount(0); //should == 1
 
-// pageIndex takes an item index and returns the page that it belongs on
-helper.pageIndex(5); //should == 1 (zero based index)
-helper.pageIndex(2); //should == 0
-helper.pageIndex(20); //should == -1
-helper.pageIndex(-10); //should == -1
+describe("Edge cases", function() {
+  it('should return 1 item for first page', function() {
+    expect(helper1.pageItemCount(0)).to.eql(1)
+  })
+  it('should return 1 item for first page', function() {
+    expect(helper1.pageItemCount(0)).to.eql(1)
+  })
+})
+
+
