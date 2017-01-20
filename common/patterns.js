@@ -1,5 +1,9 @@
 "use strict";
 
+//succint way to generate uid passable as unique
+
+const uid = () => Math.random().toString(34).slice(2);
+
 
 // default parameter - note: in the ES6 default paramters come in the argument list
 let greet = function greet(name) {
