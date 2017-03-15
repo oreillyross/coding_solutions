@@ -9,7 +9,7 @@ greater than the pivot value.
 Quick sort partitions an array and then calls itself recursively twice 
 to sort the two resulting subarrays. This algorithm is quite efficient 
 for large-sized data sets as its average and worst case complexity are of Ο(n2), 
-where n is the number of items.
+where n is the number of items. Average complexity is O(n log n)
 
 The quickSort function should recursively sort the subarray array[p..r].
 - If the subarray has size 0 or 1, then it's already sorted, and so nothing 
