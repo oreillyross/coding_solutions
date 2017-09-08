@@ -3,3 +3,5 @@ def fibonacci(n):
     while b < n:
         print(b)
         a,b = b, a+b
+        
+fibonacci(10)        
